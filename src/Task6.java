@@ -1,16 +1,16 @@
 import java.util.Scanner;
-public class Task1 {
+
+public class Task6 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         if (sc.hasNextInt()) {
+            int a = sc.nextInt();
             int n = sc.nextInt();
-            printDigits(n);
+            System.out.println(power(a, n));
         }
     }
-    static void printDigits(int n) {
-        if (n / 10 > 0) {
-            printDigits(n / 10);
-        }
-        System.out.println(n % 10);
+    static int power(int a, int n) {
+        if (n == 0) return 1;
+        return a * power(a, n - 1);
     }
 }
