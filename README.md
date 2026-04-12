@@ -1,50 +1,178 @@
-Name: Serikov Dias
-Group: SE-2513
+# Assignment #2 – Banking System
 
-**ALL SCREENSHOTS ARE IN assignments/screenshots**
+**Student:** Serikov Dias 
+**Group:** SE-2513
 
-Part 1. Recursion with Numbers
+---
 
-Task 1. Print Digits of a Number Description: A recursive function that prints every digit of a given integer on a separate line.
-![task1](https://github.com/user-attachments/assets/c479419e-44d8-4495-96f8-4a928c0c6681)
+## Overview
 
-Task 2. Average of Elements Description: Calculates the sum of array elements recursively and then computes the average.
-![task2](https://github.com/user-attachments/assets/3f0c8a93-4b8d-42ae-89bc-d86523f3b669)
+This project is a console-based banking system written in Java. It demonstrates the use of physical and logical data structures including `LinkedList`, `Stack`, `Queue`, and `Array`. The program simulates basic banking operations such as account management, deposits, withdrawals, bill payments, and an admin panel.
 
-Task 3. Prime Number Check Description: A recursive function to check if a number $n$ is prime or composite.
-![task3](https://github.com/user-attachments/assets/268d921d-b4a4-44bd-bf04-8f3be1f7ef72)
+---
 
-Task 4. Factorial Description: Calculates the factorial of a given number using recursion.
-![task4](https://github.com/user-attachments/assets/bc9cb647-bd95-418f-ac76-989d022a65b4)
+## How to Run
 
-Part 2. Recursion with SequencesTask 5. Fibonacci Number Description: Finds the $n$-th Fibonacci number using the formula.
-![task5](https://github.com/user-attachments/assets/5f4412d8-4475-4251-be7f-7eeca4b8d69b)
+1. Install [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
+2. Clone or download this repository
+3. Open the project in IntelliJ IDEA
+4. Run `BankAccount.java`
 
-Task 6. Power Function Description: A recursive function that returns a^n.
-![task6](https://github.com/user-attachments/assets/93630382-03ea-45ff-870a-6272424c432f)
+---
 
-Task 7. Reverse Output Description: Reads n numbers and prints them in reverse order using the recursion stack instead of an extra array.
-![task7](https://github.com/user-attachments/assets/6a33b869-e848-47a6-a6e2-d7c4f3468f52)
+## Project Structure
 
-Part 3. Recursion with Strings & Algorithms
+```
+assignment2/
+└── src/
+    ├── BankAccount.java   # BankAccount class
+        └── Main.java      # Main program with menu logic
+```
+## Part 1 – Logical Data Structures
 
-Task 8. Check Digits in String Description: Recursively checks if a string contains only digits.
-![task8](https://github.com/user-attachments/assets/6fc60914-536a-42db-8da9-39ef0520550a)
+### Task 1 – Bank Account Storage Using LinkedList
 
-Task 9. Count Characters Description: Counts the total number of characters in a string without using .length() in a loop.
-![task9](https://github.com/user-attachments/assets/2c0bf3b7-4e2e-41d9-8e7d-bebdbe6ef211)
+A `BankAccount` class was created with fields: `accountNumber`, `username`, and `balance`.  
+Accounts are stored in a `LinkedList<BankAccount>`.
 
-Task 10. Greatest Common Divisor (GCD) Description: Finds the GCD of two numbers using the recursive Euclidean Algorithm.
-![task10](https://github.com/user-attachments/assets/d620e302-6466-4058-90c8-b9789d41ebce)
+Three predefined accounts are loaded at startup:
 
-Brief Summary of Work Process
+```
+Ali   [101] => Balance: 150000.0
+Aslan  [102] => Balance: 220000.0
+Nura  [103] => Balance: 300000.0
+```
+### Task 2 – Deposit & Withdraw Operations
 
-Logic Design: Developed 10 recursive solutions in Java, strictly avoiding all loops as required
+Users can deposit or withdraw money by entering their username and amount.  
+The balance inside the `LinkedList` is updated directly.  
 
-Implementation: Defined clear base cases and recursive steps for each task
+**Example output:**
+```
+Enter username: Ali
+Amount: 50000
+Deposit successful.
+```
+
+**Screenshot:**  
+<img width="697" height="254" alt="image" src="https://github.com/user-attachments/assets/a9b0dc3b-2eb1-47be-8205-797e271f2653" />
+
+---
+
+### Task 3 – Transaction History (Stack – LIFO)
+
+A `Stack<String>` called `history` stores every deposit and withdrawal as a string.  
+The admin can view the full history or undo the last transaction using `pop()`.
+
+**Example output:**
+```
+Transaction history:
+ - Deposited 50000 to Ali
+ - Withdrew 20000 from Ali
+
+Undone: Withdrew 20000 from Ali
+```
+
+**Screenshot:**  
+<img width="869" height="239" alt="image" src="https://github.com/user-attachments/assets/1f867d1c-798f-4ab8-b9ce-06a1715f8d04" />
 
 
-Environment: Developed and organized the project using IntelliJ IDEA
+---
+
+### Task 4 – Bill Payment Queue (Queue – FIFO)
+
+A `Queue<String>` called `billQueue` stores bill payment requests in order.  
+Bills are processed one at a time from the front of the queue (FIFO).
+
+**Example output:**
+```
+Bill added to queue.
+Processing: Electricity Bill - Aslan
+```
+
+**Screenshot:**  
+<img width="605" height="205" alt="image" src="https://github.com/user-attachments/assets/6ca39e00-016d-41b9-a5b3-5c78e0bfce0f" />
 
 
-Validation: Verified each task against the provided examples to ensure functional accuracy and correct input handling
+---
+
+### Task 5 – Account Opening Queue (Admin Simulation)
+
+Users submit account opening requests through the bank menu.  
+Requests are stored in a `Queue<BankAccount>` called `accountRequests`.  
+The admin can approve requests one by one — each approved account is moved to the main `LinkedList`.
+
+**Example output:**
+```
+Your request has been submitted.
+Account approved: Nura [104] => Balance: 50000.0
+```
+
+**Screenshot:**  
+<img width="702" height="258" alt="image" src="https://github.com/user-attachments/assets/bccbec74-1d9d-461d-9042-661e6fd6b52c" />
+
+
+---
+
+## Part 2 – Physical Data Structures
+
+### Task 6 – Array of BankAccounts
+
+A `BankAccount[3]` array stores 3 predefined accounts.  
+These accounts are then loaded into the `LinkedList` at program start using `Collections.addAll()`.
+
+**Screenshot:**  
+<img width="720" height="145" alt="image" src="https://github.com/user-attachments/assets/82e91875-a55b-44dd-a397-961818623e5a" />
+
+
+---
+
+## Part 3 – Mini Banking Menu
+
+The main menu integrates all tasks into one console interface:
+
+```
+=== MAIN MENU ===
+1. Enter Bank
+2. Enter ATM
+3. Admin Panel
+4. Exit
+```
+
+### Bank Menu
+- Submit account opening request → added to `accountRequests` queue
+- Deposit money → updates balance in `LinkedList`, logs to `Stack`
+- Withdraw money → updates balance in `LinkedList`, logs to `Stack`
+
+### ATM Menu
+- Check balance
+- Withdraw money
+- Pay a bill → added to `billQueue`
+
+### Admin Panel
+- Process account requests (from queue to LinkedList)
+- Process bills (from bill queue)
+- View full transaction history (Stack)
+- Undo last transaction (pop from Stack)
+
+**Screenshot:**  
+<img width="583" height="242" alt="image" src="https://github.com/user-attachments/assets/21170dc9-9fc4-42ae-9c88-5a5bcb2e8717" />
+
+
+---
+
+## Data Structures Summary
+
+| Structure | Usage |
+|-----------|-------|
+| `LinkedList<BankAccount>` | Stores all active bank accounts |
+| `Stack<String>` | Tracks transaction history (supports undo) |
+| `Queue<String>` | Manages bill payment requests (FIFO) |
+| `Queue<BankAccount>` | Manages new account opening requests |
+| `BankAccount[]` | Physical array for initial account setup |
+
+---
+
+## Work Process
+
+The project was built step by step following the assignment tasks. First the `BankAccount` class and `LinkedList` were set up, then deposit/withdraw logic was added. The `Stack` was connected to every transaction to enable undo functionality. The `Queue` was used for both bill payments and account requests to simulate real banking workflows. Finally, all parts were integrated into the main menu system.
