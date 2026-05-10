@@ -1,13 +1,9 @@
-# Assignment 3 – Graph Traversal and Representation System
+# Assignment 4 Graph Traversal and Representation System
 
 ## A. Project Overview
-
 This project implements a directed graph system in Java, supporting graph construction, traversal, and performance analysis. A **graph** is a data structure composed of **vertices** (nodes) and **edges** (connections between nodes). In this implementation, edges are directed, meaning they go from a source vertex to a destination vertex.
-
 **BFS (Breadth-First Search)** explores the graph level by level, visiting all neighbors of a vertex before moving deeper. It uses a queue to track vertices to visit.
-
 **DFS (Depth-First Search)** explores as far as possible along each branch before backtracking. It uses recursion (implicit call stack) to traverse the graph depth-first.
-
 ---
 
 ## B. Class Descriptions
@@ -77,53 +73,25 @@ Graphs were built using a fixed random seed (42) to ensure reproducibility. Edge
 
 ## E. Screenshots
 
-### Small Graph Structure Output
-```
-Vertex 0 -> [3, 5, 8, 6]
-Vertex 1 -> []
-Vertex 2 -> [3]
-Vertex 3 -> [9, 1, 4]
-Vertex 4 -> []
-Vertex 5 -> [8]
-Vertex 6 -> [2, 0, 3]
-Vertex 7 -> [6]
-Vertex 8 -> [4]
-Vertex 9 -> [3]
-```
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/31ca3afc-d4f5-4d3f-a31a-4a74b1cd5295" />
 
-### BFS Traversal Output (Small Graph, start = 0)
-```
-BFS from 0: [0, 3, 5, 8, 6, 9, 1, 4, 2]
-```
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/113e8993-7b74-4c19-84b3-f866b7f79628" />
 
-### DFS Traversal Output (Small Graph, start = 0)
-```
-DFS from 0: [0, 3, 9, 1, 4, 5, 8, 6, 2]
-```
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/499df146-ac88-42cb-80e5-d707f7a70d4a" />
 
-### Performance Results
-```
-Graph Size           | BFS Time             | DFS Time
-------------------------------------------------------------------
-Small (10 vertices)  | BFS: 11797178 ns     | DFS:   322866 ns
-Medium (30 vertices) | BFS:   950754 ns     | DFS:   399765 ns
-Large (100 vertices) | BFS:  2072338 ns     | DFS:   452994 ns
-```
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/bfeef586-d69b-4fa0-9f3a-c2bcd507deaf" />
 
 ---
 
 ## F. Reflection
 
 Working on this assignment gave me a clear understanding of how graph traversal algorithms behave in practice versus in theory. Both BFS and DFS have O(V + E) time complexity, but their traversal orders are very different — BFS explores neighbors level by level while DFS dives deep into a single path before backtracking. This difference becomes very visible when comparing the output sequences: BFS from vertex 0 visits vertex 3 and immediately explores all neighbors of 3, while DFS immediately follows the deepest path before returning.
-
 The main challenge was correctly handling the visited set to avoid infinite loops in graphs with cycles, and ensuring the adjacency list was built consistently before traversal. I also learned that raw nanosecond benchmarks in Java can be misleading for small graphs due to JVM JIT compilation warm-up — the first call to any method is often much slower than subsequent ones, which explains the anomalous BFS time for the small graph. A more accurate benchmark would use repeated runs and average the results. Overall, this project made the relationship between data structure choice (adjacency list vs matrix) and algorithm performance very concrete.
 
 ---
-
 ## Repository Structure
-
 ```
-assignment3-graphs/
+assignments/
 ├── src/
 │   ├── Vertex.java
 │   ├── Edge.java
@@ -134,18 +102,4 @@ assignment3-graphs/
 │   └── screenshots/
 ├── README.md
 └── .gitignore
-```
-
-## Commit History
-
-```
-init: project structure
-feat(vertex): implemented Vertex class
-feat(edge): added Edge class
-feat(graph): implemented adjacency list
-feat(traversal): added BFS and DFS
-feat(experiment): added performance testing
-docs(readme): added analysis and results
-perf(cleanup): improved code
-release: v1.0
 ```
