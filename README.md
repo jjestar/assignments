@@ -1,8 +1,7 @@
 # Serikov Dias SE-2513
 
 ## Bonus Task: Dijkstra's Algorithm
-
-This bonus task extends the base graph implementation to support **weighted edges** and uses **Dijkstra's Algorithm** to find the shortest path from a starting vertex to all other vertices in the graph.
+#implemented graph using adj. list
 ```
 static class Edge {
     int destination; // destination of edge
@@ -24,6 +23,7 @@ for (int i = 0; i < numVertices; i++) {
 }
 distance[start] = 0; // path to starting vertex is 0
 ```
+----
 ```
 int current = -1;
 for (int i = 0; i < numVertices; i++) {
